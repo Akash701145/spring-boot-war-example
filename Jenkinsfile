@@ -13,7 +13,7 @@ pipeline{
         stage("Build"){
             steps{
                 // mvn test
-                sh 'mvn package'
+                sh 'mvn install'
                 echo "build hoga is stage mai"
             }
         }
