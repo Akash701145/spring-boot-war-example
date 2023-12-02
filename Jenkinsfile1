@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/Akash701145/sonarqube-jenkins.git'
+                git 'https://github.com/Akash701145/spring-boot-war-example.git'
             }
          }        
        stage('Build'){
