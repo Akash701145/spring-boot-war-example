@@ -20,7 +20,7 @@ pipeline{
         stage("Deploy on Test"){
             steps{
                 // mvn package
-               deploy adapters: [tomcat9(credentialsId: 'tomcat9details', path: '', url: 'http://34.226.148.148:8080')], contextPath: '/app', war: 'target/**/*.war'
+               deploy adapters: [tomcat9(credentialsId: 'tomcat9details', path: '', url: 'http://34.226.148.148:8080')], contextPath: '/app', war: '**/*.war'
                 echo "deploy on test"
             }
         } 
