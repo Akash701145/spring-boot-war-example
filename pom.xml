@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.springhow.example</groupId>
-  <artifactId>hello-world</artifactId>
+  <artifactId>hello-world-Akash</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>hello-world</name>
+  <name>hello-world-Akash</name>
   <description>Demo project for Spring Boot</description>
 
   <parent>
