@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven' 
+    }
+    stages {
+        stage("Test") {
+            steps {
+                sh 'mvn test'
+                echo "testing stage hai"
+            }
+        }
+        stage("Build") {
+            steps {
+                sh 'mvn install'
+                echo "build hoga is stage mai"
+            }
+        }
+        stage("Deploy on Test") {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'tomcat9details', path: '', url: 'http://54.243.27.140:8080')], contextPath: '/app', war: '**/*.war'
+                echo "deploy on test"
+            }
+        }
+        stage("Approval for Prod Deployment") {
+            steps {
+                script {
+                    def userInput = input(
+                        message: "Do you want to deploy on Production?",
+                        ok: "Yes",
+                        parameters: [choice(choices: ['Yes', 'No'], description: 'Select Yes to continue to Production', name: 'confirm')]
+                    )
+                    if (userInput == 'No') {
+                        error("Deployment to Production aborted by user.")
+                    }
+                }
+            }
+        }
+        stage("Deploy on Prod") {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'tomcat92details', path: '', url: 'http://54.83.74.157:8080')], contextPath: '/app', war: '**/*.war'
+                echo "production par daal dinge"
+            }
+        }                            
+    }
+    post {
+        always {
+            echo "========always========"
+        }
+        success {
+            echo "========A executed successfully========"
+        }
+        failure {
+            echo "========A execution failed========"
+        }
+    }
+}
