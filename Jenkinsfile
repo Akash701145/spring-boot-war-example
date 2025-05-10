@@ -26,7 +26,7 @@ pipeline{
         } 
         stage("Deploy on Prod"){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcat92details', path: '', url: 'http://44.211.43.42:8080')], contextPath: '/app', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat92details', path: '', url: 'http://54.83.74.157:8080')], contextPath: '/app', war: '**/*.war'
                 echo "production par daal dinge "
             }
         }                           
