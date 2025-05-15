@@ -27,7 +27,7 @@ pipeline{
         stage("Approval to Deploy on Prod") {
             steps {
                script {
-                   input message: "Should we continue?", ok: "Yes, we should"  # Note: The input step must be wrapped inside a script block when used inside steps, because it's a scripted step being used in a declarative pipeline.
+                   input message: "Should we continue?", ok: "Yes, we should"  
 
                 }
             }
