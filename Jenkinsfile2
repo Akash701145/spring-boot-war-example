@@ -24,12 +24,14 @@ pipeline{
                 echo "deploy on test"
             }
         } 
-        stage("Approval to Deploy on Prod"){
-            steps{
-                input message "should we continue?"
-                ok: "yes we should"
-            }    
-        } 
+        stage("Approval to Deploy on Prod") {
+            steps {
+               script {
+                   input message: "Should we continue?", ok: "Yes, we should"
+                }
+            }
+        }  
+ 
         stage("Deploy on Prod"){
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'tomcat92details', path: '', url: 'http://13.220.54.101:8080')], contextPath: '/app', war: '**/*.war'
